@@ -20,8 +20,8 @@ local function get_importfile_name(bufnr, start_line, stop_line)
     local fileimport_line
     fileimport_line = vim.api.nvim_buf_get_lines(bufnr, import_line - 1, import_line, false)
     fileimport_string = string.gsub(fileimport_line[1], "<", "", 1)
-      :gsub("^%s+", "")
-      :gsub("%s+$", "")
+        :gsub("^%s+", "")
+        :gsub("%s+$", "")
     -- local fileimport_path = path:new(fileimport_string)
     -- if fileimport_path:is_absolute() then
     if path:new(fileimport_string):is_absolute() then
@@ -71,13 +71,9 @@ local function get_body(bufnr, start_line, stop_line)
     end
   end
 
-  local is_json, json_body = pcall(vim.fn.json_decode, body)
-  if is_json then
-    return json_body
-  end
-
   return body
 end
+
 -- is_request_line checks if the given line is a http request line according to RFC 2616
 local function is_request_line(line)
   local http_methods = { "GET", "POST", "PUT", "PATCH", "DELETE" }
